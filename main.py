@@ -36,7 +36,16 @@ class Inventory:
         print(f'{key}: {value}') 
 
     def save(self):
-      pass  
+      print('Saving...')
+      with open('inventory.txt', 'w') as f:
+        json.dump(self.pets, f)
+      print('Saved!')  
 
     def load(self):
-      pass  
+      print('Loading..')
+      if os.path.exists('inventory.txt'):
+          print('Skipping..., nothing to load')
+          return
+      with open('inventory.txt', 'r') as f:
+        self.pts = json.load(f)
+      print('Loaded!')   
